@@ -1,0 +1,16 @@
+AddDefaultCharset utf-8
+php_value short_open_tag 0
+php_value detect_unicode 0
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # we skip all files in /web
+  RewriteCond %{REQUEST_URI} ^/web/
+  RewriteRule .* - [L]
+
+  # we rewrite all other files with .something to /web
+  RewriteRule ^(.*)$ /web/$1 [L]
+
+  
+</IfModule>
