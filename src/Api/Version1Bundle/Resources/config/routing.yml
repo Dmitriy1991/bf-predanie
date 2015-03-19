@@ -1,3 +1,35 @@
 api_version1_homepage:
-    path:     /hello/{name}
+    pattern:  /
     defaults: { _controller: ApiVersion1Bundle:Default:index }
+    requirements:
+        _method: GET
+
+api_version1_get_authors:
+    pattern:  /authors
+    defaults: { _controller: ApiVersion1Bundle:Author:getAll }
+    requirements:
+        _method: GET
+
+api_version1_get_author:
+    pattern:  /authors/{id}
+    defaults: { _controller: ApiVersion1Bundle:Author:get }
+    requirements:
+        _method: GET
+
+api_version1_post_users:
+    pattern:  /authors
+    defaults: { _controller: ApiVersion1Bundle:Author:post }
+    requirements:
+        _method: POST
+
+api_version1_put_author:
+    pattern:  /authors/{id}
+    defaults: { _controller: ApiVersion1Bundle:Author:put }
+    requirements:
+        _method: PUT
+
+api_version1_delete_author:
+    pattern:  /authors/{id}
+    defaults: { _controller: ApiVersion1Bundle:Author:delete }
+    requirements:
+        _method: DELETE
