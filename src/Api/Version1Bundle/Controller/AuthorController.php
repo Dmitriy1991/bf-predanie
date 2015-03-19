@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use Api\Version1Bundle\Entity\Author;
 
-class AuthorController extends Controller {
+class AuthorController extends Controller implements TokenAuthenticatedController {
 
     /**
      * Get all authors

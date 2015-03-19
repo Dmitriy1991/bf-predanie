@@ -1,4 +1,6 @@
 services:
-#    api_version1.example:
-#        class: Api\Version1Bundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    app.tokens.action_listener:
+        class: Api\Version1Bundle\EventListener\TokenListener
+        arguments: [ @service_container ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
