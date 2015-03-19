@@ -1,0 +1,3 @@
+api_version1_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ApiVersion1Bundle:Default:index }

@@ -1,0 +1,4 @@
+services:
+#    api_version1.example:
+#        class: Api\Version1Bundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
