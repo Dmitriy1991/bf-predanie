@@ -4,6 +4,9 @@ namespace Api\Version1Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use Api\Version1Bundle\Entity\Author;
 
 class AuthorController extends Controller {
 
@@ -13,28 +16,42 @@ class AuthorController extends Controller {
      * @return JsonResponse
      */
     public function getAllAction() {
-        $aEntity = array(
-            'name' => 'Hello world!',
-            'date' => date('Y:m:d')
-        );
+        $aAuthors = $this->getDoctrine()->getRepository('ApiVersion1Bundle:Author')->findAll();
 
-        return new JsonResponse( $aEntity );
+        $aResponse = array();
+        foreach ( $aAuthors as $oAuthor ) {
+            $aResponse[] = array(
+                'sName' => $oAuthor->getName(),
+                'sDescription' => $oAuthor->getDescription(),
+                'sBirthDate' => $oAuthor->getBirthDate()->format('Y-m-d')
+            );
+        }
+
+        return new JsonResponse( $aResponse );
     }
+
 
     /**
      * Get author by id
      *
      * @param $id
      * @return JsonResponse
+     * @throws NotFoundHttpException
      */
     public function getAction( $id ) {
-        $aEntity = array(
-            'name' => 'Hello world!',
-            'date' => date('Y:m:d'),
-            'id'   => $id
+        $oAuthor = $this->getDoctrine()->getRepository('ApiVersion1Bundle:Author')->find( $id );
+
+        if ( !$oAuthor instanceof Author ) {
+            throw new NotFoundHttpException('Invalid author id');
+        }
+
+        $aResponse = array(
+            'sName' => $oAuthor->getName(),
+            'sDescription' => $oAuthor->getDescription(),
+            'sBirthDate' => $oAuthor->getBirthDate()->format('Y-m-d')
         );
 
-        return new JsonResponse( $aEntity );
+        return new JsonResponse( $aResponse );
     }
 
     /**
