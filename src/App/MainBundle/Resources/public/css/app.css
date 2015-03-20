@@ -1,0 +1,23 @@
+h1 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: bold;
+    width: 100%;
+    padding-bottom: 5px;
+}
+#content {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+#content .author-item {
+    border: 1px solid #000000;
+    width: calc( 100% - 40px );
+    padding: 20px;
+    margin-bottom: 25px;
+}
+#content .author-item .name {
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: bold;
+}

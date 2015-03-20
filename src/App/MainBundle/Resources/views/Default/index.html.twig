@@ -5,8 +5,8 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    <link href="{{ asset('bundles/appbundle/css/reset.css') }}" type="text/css" rel="stylesheet" />
-    <link href="{{ asset('bundles/appbundle/css/app.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/appmain/css/reset.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/appmain/css/app.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
@@ -25,10 +25,10 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('bundles/appbundle/js/jquery-1.11.2.min.js') }}"></script>
-    <script src="{{ asset('bundles/appbundle/js/angular.min.js') }}"></script>
-    <script src="{{ asset('bundles/appbundle/js/angular.infinity.scroll.js') }}"></script>
-    <script src="{{ asset('bundles/appbundle/js/library.controller.js') }}"></script>
+    <script src="{{ asset('bundles/appmain/js/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ asset('bundles/appmain/js/angular.min.js') }}"></script>
+    <script src="{{ asset('bundles/appmain/js/angular.infinity.scroll.js') }}"></script>
+    <script src="{{ asset('bundles/appmain/js/library.controller.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
