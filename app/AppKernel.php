@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Api\Version1Bundle\ApiVersion1Bundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new App\MainBundle\AppMainBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
