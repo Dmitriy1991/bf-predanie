@@ -1,5 +1,39 @@
 {% extends "::base.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/appbundle/css/reset.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/appbundle/css/app.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
-    <h1>Hello!</h1>
+    {% verbatim %}
+    <div id="content" ng-app="libraryApp" ng-controller="AuthorListController" infinite-scroll="loadMore()" infinite-scroll-distance="1">
+        <h1>Авторы</h1>
+
+        <div ng-repeat="author in authors" class="author-item">
+            <div class="name">{{ author.sName }}</div>
+            <div class="description">{{ author.sDescription }}</div>
+        </div>
+    </div>
+    {% endverbatim %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/appbundle/js/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ asset('bundles/appbundle/js/angular.min.js') }}"></script>
+    <script src="{{ asset('bundles/appbundle/js/angular.infinity.scroll.js') }}"></script>
+    <script src="{{ asset('bundles/appbundle/js/library.controller.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var scope = angular.element('div#content').scope();
+            scope.$apply( function () {
+                scope.authors = {{ aLastAuthors|raw }};
+            });
+        });
+    </script>
 {% endblock %}

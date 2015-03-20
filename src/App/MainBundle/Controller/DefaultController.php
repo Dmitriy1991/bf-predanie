@@ -3,17 +3,21 @@
 namespace App\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        // set auth token
-        if ( !$this->get('session')->get('auth_token') ) {
-            $sPHPSESSID = $this->get('request')->cookies->get('PHPSESSID');
-            $this->get('session')->set('auth_token', md5( $sPHPSESSID ));
+        $session = $this->get('session');
+        $session->start();
+
+        if ( !$session->get('auth_token') ) {
+            $session->set('auth_token', md5( $session->getId() ));
         }
 
-        return $this->render('AppMainBundle:Default:index.html.twig', array());
+        $aLastAuthors = json_encode( $this->get('author_service')->getLastAuthors() );
+
+        return $this->render('AppMainBundle:Default:index.html.twig', array( 'aLastAuthors' => $aLastAuthors ));
     }
 }

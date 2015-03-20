@@ -16,6 +16,12 @@ api_version1_get_author:
     requirements:
         _method: GET
 
+api_version1_get_next_author:
+    pattern:  /authors/next/{id}
+    defaults: { _controller: ApiVersion1Bundle:Author:nextAuthor }
+    requirements:
+        _method: GET
+
 api_version1_post_users:
     pattern:  /authors
     defaults: { _controller: ApiVersion1Bundle:Author:post }

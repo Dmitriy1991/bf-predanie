@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class AuthorRepository extends EntityRepository
 {
+    public function getNextAuthors($iStart, $iCount) {
+        return $this->getEntityManager('mikado')
+            ->createQuery('SELECT a FROM ApiVersion1Bundle:Author a ORDER BY a.id ASC')
+            ->setFirstResult( $iStart )
+            ->setMaxResults($iCount)
+            ->getResult();
+    }
 }
